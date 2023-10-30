@@ -13,5 +13,6 @@ enum ScreenType {
 
 class AppStateVM: ObservableObject {
     @Published var screenType: ScreenType = .splish
+    @Published var showLoadingView = false
 }
 

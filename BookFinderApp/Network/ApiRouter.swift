@@ -40,6 +40,8 @@ extension ApiRouter: URLRequestConvertible {
     
     var parameters: Parameters? {
         switch self {
+        case .searchBooks(let param):
+            return param
         default:
             return nil
         }

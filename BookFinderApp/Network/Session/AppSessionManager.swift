@@ -19,5 +19,6 @@ final class AppSessionManager {
         #else
         self.session = Session()
         #endif
+        session.sessionConfiguration.timeoutIntervalForRequest = 120
     }
 }

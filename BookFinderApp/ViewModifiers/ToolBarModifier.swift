@@ -37,4 +37,6 @@ extension View {
     func navigationApparance(bgColor: Color, fgColor: Color) -> some View {
         self.modifier(NaviToolBarModifier(bgColor: bgColor, fgColor: fgColor))
     }
+    
+   
 }

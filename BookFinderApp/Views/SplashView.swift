@@ -15,7 +15,7 @@ struct SplashView: View {
                 .ignoresSafeArea()
             
             Text("Book Finder App")
-                .foregroundColor(.primary10)
+                .foregroundColor(.white)
                 .font(.custom(.largeTitle))
             
         }

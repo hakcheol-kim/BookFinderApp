@@ -17,6 +17,7 @@ let package = Package(
         .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git",  .upToNextMajor(from: "5.0.0")),
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", .upToNextMajor(from: "4.1.0")),
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.7.0")),
+        .package(url: "https://github.com/SDWebImage/SDWebImageSwiftUI.git", .upToNextMajor(from: "2.0.0")),
     ],
     targets: [
         .target(
@@ -25,6 +26,7 @@ let package = Package(
                 "SwiftyJSON",
                 "SFSafeSymbols",
                 "Alamofire",
+                "SDWebImageSwiftUI",
             ]
         ),
         .testTarget(

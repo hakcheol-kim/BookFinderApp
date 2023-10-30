@@ -20,6 +20,11 @@ struct BookFinderAppApp: App {
             else {
                 MainView()
                     .environmentObject(appState)
+                    .overlay {
+                        if appState.showLoadingView {
+                            SpinerView()
+                        }
+                    }
             }
         }
     }

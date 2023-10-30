@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E519A1332AF093AD0040C789 /* BookResModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A1322AF093AD0040C789 /* BookResModel.swift */; };
+		E519A1352AF0BD070040C789 /* MainListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A1342AF0BD070040C789 /* MainListCell.swift */; };
+		E519A1372AF0CC090040C789 /* Number+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A1362AF0CC090040C789 /* Number+Extension.swift */; };
+		E519A1392AF0D2180040C789 /* ScrollPreferenceKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A1382AF0D2180040C789 /* ScrollPreferenceKey.swift */; };
+		E519A13B2AF0DFA20040C789 /* KeyboardDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A13A2AF0DFA20040C789 /* KeyboardDownModifier.swift */; };
+		E519A13D2AF0E0330040C789 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A13C2AF0E0330040C789 /* UIApplication+Extension.swift */; };
+		E51EC2BC2AF0E4080055E239 /* SpinerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51EC2BB2AF0E4080055E239 /* SpinerView.swift */; };
 		E53DF67A2AF056AE00BEF1F4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DF6792AF056A600BEF1F4 /* AppConstants.swift */; };
 		E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */; };
 		E58E53F92AF03BA5001657D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58E53F82AF03BA5001657D1 /* Assets.xcassets */; };
@@ -44,6 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E519A1322AF093AD0040C789 /* BookResModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookResModel.swift; sourceTree = "<group>"; };
+		E519A1342AF0BD070040C789 /* MainListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainListCell.swift; sourceTree = "<group>"; };
+		E519A1362AF0CC090040C789 /* Number+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Number+Extension.swift"; sourceTree = "<group>"; };
+		E519A1382AF0D2180040C789 /* ScrollPreferenceKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollPreferenceKey.swift; sourceTree = "<group>"; };
+		E519A13A2AF0DFA20040C789 /* KeyboardDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDownModifier.swift; sourceTree = "<group>"; };
+		E519A13C2AF0E0330040C789 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		E51EC2BB2AF0E4080055E239 /* SpinerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinerView.swift; sourceTree = "<group>"; };
 		E53DF6792AF056A600BEF1F4 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		E58E53F12AF03BA3001657D1 /* BookFinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderAppApp.swift; sourceTree = "<group>"; };
@@ -93,6 +107,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E519A1312AF093900040C789 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E519A1322AF093AD0040C789 /* BookResModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E53DF67B2AF056D800BEF1F4 /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +149,7 @@
 		E58E53F32AF03BA3001657D1 /* BookFinderApp */ = {
 			isa = PBXGroup;
 			children = (
+				E519A1312AF093900040C789 /* Models */,
 				E58E54392AF04078001657D1 /* Info.plist */,
 				E58E54352AF03DEA001657D1 /* BookFinderAppSpm */,
 				E58E54262AF03C88001657D1 /* Extension */,
@@ -168,7 +191,9 @@
 		E58E541E2AF03C87001657D1 /* ViewModifiers */ = {
 			isa = PBXGroup;
 			children = (
+				E519A1382AF0D2180040C789 /* ScrollPreferenceKey.swift */,
 				E58E541F2AF03C87001657D1 /* ToolBarModifier.swift */,
+				E519A13A2AF0DFA20040C789 /* KeyboardDownModifier.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -196,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				E58E54272AF03C88001657D1 /* Font+Extension.swift */,
+				E519A1362AF0CC090040C789 /* Number+Extension.swift */,
+				E519A13C2AF0E0330040C789 /* UIApplication+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -204,7 +231,9 @@
 			isa = PBXGroup;
 			children = (
 				E58E54302AF03D27001657D1 /* MainView.swift */,
+				E519A1342AF0BD070040C789 /* MainListCell.swift */,
 				E58E542F2AF03D27001657D1 /* SplashView.swift */,
+				E51EC2BB2AF0E4080055E239 /* SpinerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -349,15 +378,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E519A1392AF0D2180040C789 /* ScrollPreferenceKey.swift in Sources */,
 				E58E542B2AF03C88001657D1 /* ApiLogger.swift in Sources */,
+				E519A13D2AF0E0330040C789 /* UIApplication+Extension.swift in Sources */,
 				E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */,
 				E58E54342AF03D6D001657D1 /* AppStateVM.swift in Sources */,
+				E519A1352AF0BD070040C789 /* MainListCell.swift in Sources */,
 				E53DF67A2AF056AE00BEF1F4 /* AppConstants.swift in Sources */,
+				E51EC2BC2AF0E4080055E239 /* SpinerView.swift in Sources */,
 				E58E54322AF03D27001657D1 /* MainView.swift in Sources */,
+				E519A1372AF0CC090040C789 /* Number+Extension.swift in Sources */,
 				E58E542A2AF03C88001657D1 /* ApiRouter.swift in Sources */,
 				E58E54292AF03C88001657D1 /* ApiService.swift in Sources */,
+				E519A1332AF093AD0040C789 /* BookResModel.swift in Sources */,
 				E58E54282AF03C88001657D1 /* ToolBarModifier.swift in Sources */,
 				E58E542D2AF03C88001657D1 /* Font+Extension.swift in Sources */,
+				E519A13B2AF0DFA20040C789 /* KeyboardDownModifier.swift in Sources */,
 				E58E542C2AF03C88001657D1 /* AppSessionManager.swift in Sources */,
 				E58E54312AF03D27001657D1 /* SplashView.swift in Sources */,
 			);
