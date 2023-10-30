@@ -8,7 +8,7 @@
 import SwiftUI
 import SFSafeSymbols
 import Combine
-
+import SwiftyJSON
 
 struct MainView: View {
     @EnvironmentObject private var appState: AppStateVM
@@ -38,6 +38,9 @@ struct MainView: View {
             .navigationApparance(bgColor: .primary10, fgColor: .primary100)
             .navigationBarTitleDisplayMode(.large)
             .navigationTitle("Book Finder App")
+            .onAppear {
+                vm.requestBooks()
+            }
         }
         
         
@@ -80,6 +83,28 @@ extension MainView {
     class ViewModel: ObservableObject {
         private var cancelBag = Set<AnyCancellable>()
         @Published var searchTxt = ""
+        var startIndex: Int = 0
+        var maxResults: Int = 20
         
+        func requestBooks() {
+            var param = [String : Any]()
+            param["q"] = "flower"
+            param["startIndex"] = startIndex
+            param["maxResults"] = maxResults
+            
+            ApiService.request(.searchBooks(param), decoder: JSON.self)
+                .sink { res in
+                    switch res {
+                    case .finished:
+                        break
+                    case .failure(let error):
+                        break
+                    }
+                } receiveValue: { resModel in
+                    
+                }
+                .store(in: &cancelBag)
+        }
+
     }
 }

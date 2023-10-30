@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E53DF6782AF0538F00BEF1F4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DF6772AF0538F00BEF1F4 /* AppConstants.swift */; };
 		E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */; };
 		E58E53F92AF03BA5001657D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58E53F82AF03BA5001657D1 /* Assets.xcassets */; };
 		E58E53FC2AF03BA5001657D1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58E53FB2AF03BA5001657D1 /* Preview Assets.xcassets */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E53DF6772AF0538F00BEF1F4 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		E58E53F12AF03BA3001657D1 /* BookFinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderAppApp.swift; sourceTree = "<group>"; };
 		E58E53F82AF03BA5001657D1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				E58E542E2AF03CBD001657D1 /* Views */,
 				E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */,
 				E58E54332AF03D6D001657D1 /* AppStateVM.swift */,
+				E53DF6772AF0538F00BEF1F4 /* AppConstants.swift */,
 				E58E53F82AF03BA5001657D1 /* Assets.xcassets */,
 				E58E53FA2AF03BA5001657D1 /* Preview Content */,
 			);
@@ -341,6 +344,7 @@
 				E58E542B2AF03C88001657D1 /* ApiLogger.swift in Sources */,
 				E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */,
 				E58E54342AF03D6D001657D1 /* AppStateVM.swift in Sources */,
+				E53DF6782AF0538F00BEF1F4 /* AppConstants.swift in Sources */,
 				E58E54322AF03D27001657D1 /* MainView.swift in Sources */,
 				E58E542A2AF03C88001657D1 /* ApiRouter.swift in Sources */,
 				E58E54292AF03C88001657D1 /* ApiService.swift in Sources */,

@@ -9,18 +9,21 @@ import Foundation
 import Alamofire
 
 enum ApiRouter {
-    
+    case searchBooks([String:Any])
 }
 extension ApiRouter: URLRequestConvertible {
     
     var baseURL: URL {
-        return URL(string: "")!
+        return URL(string: AppConstants.baseUrl)!
     }
+    
     var endPoint: String {
         switch self {
-            
+        case .searchBooks:
+            return "/books/v1/volumes"
         }
     }
+    
     var method: HTTPMethod {
         return .get
         
@@ -46,7 +49,12 @@ extension ApiRouter: URLRequestConvertible {
         let urlStr = baseURL.appendingPathComponent(endPoint).absoluteString.removingPercentEncoding!
         var request = URLRequest(url: URL(string: urlStr)!)
         if let parameters = parameters {
-            request = try JSONEncoding(options: [.withoutEscapingSlashes]).encode(request, with: parameters)
+            switch self {
+            case .searchBooks:
+                request = try URLEncoding.default.encode(request, with: parameters)
+            default:
+                request = try JSONEncoding(options: [.withoutEscapingSlashes]).encode(request, with: parameters)
+            }
         }
 //            request = try JSONEncoding.default.encode(request, with: parameters)
         return request
