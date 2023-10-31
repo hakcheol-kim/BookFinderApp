@@ -14,6 +14,7 @@
 		E519A13B2AF0DFA20040C789 /* KeyboardDownModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A13A2AF0DFA20040C789 /* KeyboardDownModifier.swift */; };
 		E519A13D2AF0E0330040C789 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E519A13C2AF0E0330040C789 /* UIApplication+Extension.swift */; };
 		E51EC2BC2AF0E4080055E239 /* SpinerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51EC2BB2AF0E4080055E239 /* SpinerView.swift */; };
+		E51EC2BE2AF0ED530055E239 /* BookDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51EC2BD2AF0ED530055E239 /* BookDetailView.swift */; };
 		E53DF67A2AF056AE00BEF1F4 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53DF6792AF056A600BEF1F4 /* AppConstants.swift */; };
 		E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */; };
 		E58E53F92AF03BA5001657D1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E58E53F82AF03BA5001657D1 /* Assets.xcassets */; };
@@ -58,6 +59,7 @@
 		E519A13A2AF0DFA20040C789 /* KeyboardDownModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardDownModifier.swift; sourceTree = "<group>"; };
 		E519A13C2AF0E0330040C789 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		E51EC2BB2AF0E4080055E239 /* SpinerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpinerView.swift; sourceTree = "<group>"; };
+		E51EC2BD2AF0ED530055E239 /* BookDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailView.swift; sourceTree = "<group>"; };
 		E53DF6792AF056A600BEF1F4 /* AppConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		E58E53F12AF03BA3001657D1 /* BookFinderApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookFinderApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58E53F42AF03BA3001657D1 /* BookFinderAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookFinderAppApp.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				E519A1342AF0BD070040C789 /* MainListCell.swift */,
 				E58E542F2AF03D27001657D1 /* SplashView.swift */,
 				E51EC2BB2AF0E4080055E239 /* SpinerView.swift */,
+				E51EC2BD2AF0ED530055E239 /* BookDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -382,6 +385,7 @@
 				E58E542B2AF03C88001657D1 /* ApiLogger.swift in Sources */,
 				E519A13D2AF0E0330040C789 /* UIApplication+Extension.swift in Sources */,
 				E58E53F52AF03BA3001657D1 /* BookFinderAppApp.swift in Sources */,
+				E51EC2BE2AF0ED530055E239 /* BookDetailView.swift in Sources */,
 				E58E54342AF03D6D001657D1 /* AppStateVM.swift in Sources */,
 				E519A1352AF0BD070040C789 /* MainListCell.swift in Sources */,
 				E53DF67A2AF056AE00BEF1F4 /* AppConstants.swift in Sources */,

@@ -42,51 +42,70 @@ struct SaleInfo: Codable {
         self.salePrice = retailPrice?["amount"].intValue ?? 0
         self.currencyCode = retailPrice?["currencyCode"].stringValue ?? ""
     }
+//    init(saleability: String = "", price: Int = 0, country: String = "", currencyCode: String = "", salePrice: Int = 0, buyLink: String = "") {
+//        self.saleability = saleability
+//        self.price = price
+//        self.country = country
+//        self.currencyCode = currencyCode
+//        self.salePrice = salePrice
+//        self.buyLink = buyLink
+//    }
+}
+struct Pdf: Codable {
+    var isAvailable: Bool
+    var acsTokenLink: String
+    var downloadLink: String
+    
+    enum CodingKeys: String, CodingKey {
+        case isAvailable
+        case acsTokenLink
+        case downloadLink
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.isAvailable = try container.decodeIfPresent(Bool.self, forKey: .isAvailable) ?? false
+        self.acsTokenLink = try container.decodeIfPresent(String.self, forKey: .acsTokenLink) ?? ""
+        self.downloadLink = try container.decodeIfPresent(String.self, forKey: .downloadLink) ?? ""
+    }
+}
+struct Epub: Codable {
+    var isAvailable: Bool
+    var acsTokenLink: String
+    var downloadLink: String
+    
+    enum CodingKeys: String, CodingKey {
+        case isAvailable
+        case acsTokenLink
+        case downloadLink
+    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.isAvailable = try container.decodeIfPresent(Bool.self, forKey: .isAvailable) ?? false
+        self.acsTokenLink = try container.decodeIfPresent(String.self, forKey: .acsTokenLink) ?? ""
+        self.downloadLink = try container.decodeIfPresent(String.self, forKey: .downloadLink) ?? ""
+    }
 }
 struct AccessInfo: Codable {
-    var isAvailableEbook: Bool
-    var acsTokenLinkEbook: String
-    var downloadLinkEbook: String
-    var isAvailablePdf: Bool
-    var acsTokenLinkPdf: String
-    var downloadLinkPdf: String
+    var webReaderLink: String
+    var pdf: Pdf?
+    var epub: Epub?
     
-    enum CodingKeys: CodingKey {
-        case isAvailableEbook
-        case acsTokenLinkEbook
-        case downloadLinkEbook
-        case isAvailablePdf
-        case acsTokenLinkPdf
-        case downloadLinkPdf
-        
-        case accessInfo
+    enum CodingKeys: String, CodingKey {
+        case webReaderLink
+        case pdf
+        case epub
     }
     func encode(to encoder: Encoder) throws {
         
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let accessInfo = try container.decodeIfPresent(JSON.self, forKey: .accessInfo) {
-            self.isAvailableEbook = accessInfo["epub"].dictionaryValue["isAvailable"]?.boolValue ?? false
-            self.acsTokenLinkEbook = accessInfo["epub"].dictionaryValue["acsTokenLink"]?.stringValue ?? ""
-            self.downloadLinkEbook = accessInfo["epub"].dictionaryValue["downloadLink"]?.stringValue ?? ""
-            
-            self.isAvailablePdf = accessInfo["pdf"].dictionaryValue["isAvailable"]?.boolValue ?? false
-            self.acsTokenLinkPdf = accessInfo["pdf"].dictionaryValue["acsTokenLink"]?.stringValue ?? ""
-            self.downloadLinkPdf = accessInfo["pdf"].dictionaryValue["downloadLink"]?.stringValue ?? ""
-        }
-        else {
-            self.isAvailableEbook = false
-            self.acsTokenLinkEbook =  ""
-            self.downloadLinkEbook = ""
-            
-            self.isAvailablePdf = false
-            self.acsTokenLinkPdf = ""
-            self.downloadLinkPdf = ""
-        }
+        self.webReaderLink = try container.decodeIfPresent(String.self, forKey: .webReaderLink) ?? ""
+        self.pdf = try container.decodeIfPresent(Pdf.self, forKey: .pdf)
+        self.epub = try container.decodeIfPresent(Epub.self, forKey: .epub)
     }
 }
-struct BookModel: Identifiable, Codable, Equatable, Hashable {
+struct BookModel: Identifiable, Codable, Equatable {
     var id: String {
         identifier
     }
@@ -103,10 +122,13 @@ struct BookModel: Identifiable, Codable, Equatable, Hashable {
     var previewLink: String //미리보기 링크
     var language: String //
     var pageCount: Int
+    var saleInfo: SaleInfo?
+    var accessInfo: AccessInfo?
     
     enum CodingKeys: CodingKey {
         case selfLink
         case title
+        case subtitle
         case description
         case publishedDate
         case authors
@@ -116,8 +138,11 @@ struct BookModel: Identifiable, Codable, Equatable, Hashable {
         case previewLink
         case language
         case pageCount
+        case saleInfo
+        case accessInfo
         case id
         case volumeInfo
+        
     }
     func encode(to encoder: Encoder) throws {
         
@@ -153,6 +178,9 @@ struct BookModel: Identifiable, Codable, Equatable, Hashable {
             self.thumbnail = ""
             self.smallThumbnail = ""
         }
+        self.saleInfo = try container.decodeIfPresent(SaleInfo.self, forKey: .saleInfo)
+        self.accessInfo = try container.decodeIfPresent(AccessInfo.self, forKey: .accessInfo)
+        
     }
     static func ==(lhs: Self, rhs: Self) ->Bool {
         return lhs.id == rhs.id

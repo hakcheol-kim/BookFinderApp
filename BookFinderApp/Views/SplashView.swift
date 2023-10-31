@@ -14,15 +14,14 @@ struct SplashView: View {
             Color.main
                 .ignoresSafeArea()
             
-            Text("Book Finder App")
+            Text("Book Finder")
                 .foregroundColor(.white)
-                .font(.custom(.largeTitle))
-            
+                .font(.system(size: 34, weight: .semibold))
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 appState.screenType = .main
-            }
+//            }
         }
     }
 }

@@ -20,7 +20,6 @@ struct MainView: View {
     @State private var isScrollTop: Bool = true
     @FocusState private var focus: MainView.FocusField?
     
-    
     var body: some View {
         NavigationView {
             ZStack {
@@ -28,17 +27,17 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 0, alignment: .center), count: 1),
-                              spacing: 0, pinnedViews: [.sectionHeaders]) 
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 0, alignment: .center), count: vm.isListType ? 1 : 2),
+                              spacing: 0, pinnedViews: [.sectionHeaders])
                     {
-                        
                         Section {
                             if !vm.listData.isEmpty {
                                 ForEach(Array(zip(vm.listData.indices, vm.listData)), id: \.0) { index, item in
                                     NavigationLink {
-                                        
+                                        BookDetailView(item: item)
+                                            .environmentObject(appState)
                                     } label: {
-                                        MainListCell(item: item)
+                                        MainListCell(isListType: $vm.isListType, item: item)
                                             .onAppear {
                                                 vm.ifNeedMoreItem(index)
                                             }
@@ -69,20 +68,11 @@ struct MainView: View {
                 focus = nil
             }
             .ignoresSafeArea(.keyboard, edges: .bottom)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemSymbol: .manatsignCircle)
-                    }
-                }
-            }
             .navigationApparance(bgColor: .primary10, fgColor: .primary100)
             .navigationBarTitleDisplayMode(.large)
-            .navigationTitle("Book Finder App")
+            .navigationTitle("Book Finder")
             .onAppear {
-                vm.dataReset()
+                
             }
         }
     }
@@ -90,7 +80,7 @@ struct MainView: View {
     //ComponetView
     var noListView: some View {
         VStack {
-            Spacer()
+            Spacer(minLength: 150)
             Text("검색 결과가 없습니다.")
                 .font(.custom(.body3))
                 .foregroundColor(.primary30)
@@ -108,9 +98,10 @@ struct MainView: View {
             .padding(.trailing, 16)
             .padding(.vertical, 8)
             .keyboardType(.default)
-            .submitLabel(.done)
+            .submitLabel(.search)
             .onSubmit {
-                
+                focus = nil
+                vm.dataReset()
             }
             .background(
                 RoundedRectangle(cornerRadius: 8)
@@ -135,25 +126,37 @@ struct MainView: View {
                 .padding(.horizontal, 16)
                 .padding(.vertical, 8)
             
-            let attr : AttributedString = {
-                let countStr = vm.totalCount.addComma()
-                let result = "전체 : \(countStr)"
-                var attr = AttributedString(result)
-                attr.font = Font.system(size: 13, weight: .regular)
-                attr.foregroundColor = .primary90
-                let range = attr.range(of: countStr)!
-                attr[range].foregroundColor = Color.main
-                attr[range].font = Font.system(size: 13, weight: .semibold)
-                return attr
-            }()
-            
-            Text(attr)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-            
+            HStack {
+                let attr : AttributedString = {
+                    let countStr = vm.totalCount.addComma()
+                    let result = "전체 : \(countStr)"
+                    var attr = AttributedString(result)
+                    attr.font = Font.system(size: 13, weight: .regular)
+                    attr.foregroundColor = .primary90
+                    let range = attr.range(of: countStr)!
+                    attr[range].foregroundColor = Color.main
+                    attr[range].font = Font.system(size: 13, weight: .semibold)
+                    return attr
+                }()
                 
+                Text(attr)
+                    .padding(.leading, 16)
+                
+                Spacer()
+                
+                Button {
+                    withAnimation {
+                        vm.isListType.toggle()
+                    }
+                } label: {
+                    Image(systemSymbol: vm.isListType ? .listBullet : .squareGrid2x2)
+                        .font(.custom(.body1))
+                        .foregroundColor(.main)
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                }
+            }
+            
             if isScrollTop {
                 Divider()
             }
@@ -176,6 +179,7 @@ extension MainView {
         @Published var listData: [BookModel] = []
         @Published var isLoading = false
         @Published var totalCount = 0
+        @Published var isListType = true
         
         private var startIndex = 0
         private var maxResults = 20
@@ -183,7 +187,8 @@ extension MainView {
         
         override init() {
             super.init()
-            
+            searchTxt = "flower"
+            dataReset()
         }
         
         func delayFetch() {
@@ -235,6 +240,7 @@ extension MainView {
                 } receiveValue: { resModel in
                     self.isLoading = false
                     print(resModel.items.count)
+                    debugPrint(resModel)
                     
                     if self.startIndex == 0 {
                         self.totalCount = resModel.totalItems
