@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 enum LogLevel: CaseIterable {
     case none, url, method, header, body, statuscode, response, errorresponse, all
 }

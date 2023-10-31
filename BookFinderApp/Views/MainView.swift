@@ -8,7 +8,7 @@
 import SwiftUI
 import SFSafeSymbols
 import Combine
-import SwiftyJSON
+
 extension MainView {
     enum FocusField: Hashable {
         case searchField

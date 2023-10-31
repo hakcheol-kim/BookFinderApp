@@ -19,9 +19,9 @@ struct SplashView: View {
                 .font(.system(size: 34, weight: .semibold))
         }
         .onAppear {
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 appState.screenType = .main
-//            }
+            }
         }
     }
 }
