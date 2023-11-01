@@ -22,7 +22,7 @@ struct MainListCell: View {
     }
     
     var listView: some View {
-        VStack(spacing: 0) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack(spacing: 20) {
                 WebImage(url: URL(string: item.smallThumbnail))
                     .resizable()
@@ -35,25 +35,21 @@ struct MainListCell: View {
                     .clipShape(RoundedRectangle(cornerRadius: 4))
                     .shadow(radius: 5)
                 
-                VStack(spacing: 8) {
+                VStack(alignment: .leading, spacing: 8) {
                     Text(item.title)
                         .font(.custom(.h3))
                         .foregroundColor(.primary90)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         .lineLimit(2)
                     
-                    Text(autuorDes(item.authors))
-                        .font(.custom(.subhead))
-                        .foregroundColor(.primary60)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    if !item.authors.isEmpty {
+                        Text(autuorDes(item.authors))
+                            .font(.custom(.subhead))
+                            .foregroundColor(.primary60)
+                    }
                     
                     Text(item.publishedDate)
                         .font(.custom(.subhead))
                         .foregroundColor(.primary60)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                 }
             }
             .padding(.vertical, 8)
@@ -64,7 +60,7 @@ struct MainListCell: View {
     }
     var colectionView: some View {
         VStack(spacing: 8) {
-            let width = (UIScreen.main.bounds.size.width - 2*16)/2
+            let width = (UIScreen.main.bounds.size.width - 4*16)/3
             WebImage(url: URL(string: item.smallThumbnail))
                 .resizable()
                 .placeholder {
@@ -81,15 +77,17 @@ struct MainListCell: View {
                 .foregroundColor(.primary90)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(1)
+                .lineLimit(2)
                 .padding(.top, 8)
             
-            Text(autuorDes(item.authors))
-                .font(.custom(.subhead))
-                .foregroundColor(.primary60)
-                .multilineTextAlignment(.leading)
-                .lineLimit(1)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if !item.authors.isEmpty {
+                Text(autuorDes(item.authors))
+                    .font(.custom(.subhead))
+                    .foregroundColor(.primary60)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(1)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
             
             Text(item.publishedDate)
                 .font(.custom(.subhead))
@@ -98,9 +96,10 @@ struct MainListCell: View {
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
+            Spacer()
         }
-        .padding(.vertical, 8)
         .padding(.horizontal, 16)
+        .padding(.vertical, 8)
     }
     func autuorDes(_ authors: [String]) -> String {
         var des = ""

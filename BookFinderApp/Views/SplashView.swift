@@ -9,16 +9,26 @@ import SwiftUI
 
 struct SplashView: View {
     @EnvironmentObject private var appState: AppStateVM
+    @State private var chatactors: Array<String.Element> = Array("Book Finder")
+    @State private var startAnimation = false
     var body: some View {
         ZStack {
             Color.main
                 .ignoresSafeArea()
             
-            Text("Book Finder")
-                .foregroundColor(.white)
-                .font(.system(size: 34, weight: .semibold))
+            
+            HStack(spacing: 0) {
+                ForEach(chatactors.indices, id: \.self) { i in
+                    Text(String(chatactors[i]))
+                        .foregroundColor(.white)
+                        .font(.system(size: 34, weight: .semibold))
+                        .opacity(startAnimation ? 1 : 0)
+                        .animation(.easeOut.delay(Double(i) * 0.05), value: startAnimation)
+                }
+            }
         }
         .onAppear {
+            startAnimation.toggle()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 appState.screenType = .main
             }

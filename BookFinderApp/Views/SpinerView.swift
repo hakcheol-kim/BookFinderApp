@@ -18,6 +18,7 @@ struct SpinerView: View {
                 .tint(.main)
                 .edgesIgnoringSafeArea(.all)
         }
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .disabled(true)
     }
 }

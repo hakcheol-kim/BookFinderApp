@@ -27,7 +27,7 @@ struct MainView: View {
                     .ignoresSafeArea()
                 
                 ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 0, alignment: .center), count: vm.isListType ? 1 : 2),
+                    LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: -16, alignment: .center), count: vm.isListType ? 1 : 3),
                               spacing: 0, pinnedViews: [.sectionHeaders])
                     {
                         Section {
@@ -44,9 +44,6 @@ struct MainView: View {
                                     }
                                 }
                             }
-                            else {
-                                noListView
-                            }
                         } header: {
                             headerView
                         }
@@ -56,6 +53,11 @@ struct MainView: View {
                             let offset = geo.frame(in: .named("scrollOffsetY")).minY
                             Color.clear.preference(key: ScrollPreferenceKey.self, value: offset)
                         }
+                    }
+                }
+                .background {
+                    if vm.listData.isEmpty {
+                        noListView
                     }
                 }
             }
@@ -80,10 +82,10 @@ struct MainView: View {
     //ComponetView
     var noListView: some View {
         VStack {
-            Spacer(minLength: 150)
+            Spacer()
             Text("검색 결과가 없습니다.")
                 .font(.custom(.body3))
-                .foregroundColor(.primary30)
+                .foregroundColor(.primary60)
             Spacer()
         }
     }
@@ -94,6 +96,7 @@ struct MainView: View {
                 vm.delayFetch()
             }
             .focused($focus, equals: .searchField)
+            .autocorrectionDisabled()
             .padding(.leading, 32)
             .padding(.trailing, 16)
             .padding(.vertical, 8)
@@ -149,7 +152,7 @@ struct MainView: View {
                         vm.isListType.toggle()
                     }
                 } label: {
-                    Image(systemSymbol: vm.isListType ? .listBullet : .squareGrid2x2)
+                    Image(systemSymbol: vm.isListType ? .listBullet : .squareGrid3x3)
                         .font(.custom(.body1))
                         .foregroundColor(.main)
                         .padding(.horizontal, 16)
@@ -187,8 +190,8 @@ extension MainView {
         
         override init() {
             super.init()
-            searchTxt = "flower"
-            dataReset()
+//            searchTxt = "flower"
+//            dataReset()
         }
         
         func delayFetch() {
